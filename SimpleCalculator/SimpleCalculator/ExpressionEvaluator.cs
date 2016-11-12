@@ -19,10 +19,10 @@ namespace SimpleCalculator
             this.expression = expression;
         }
 
-        public int GetResult()
+        public double GetResult()
         {
             Stack<char> operatorStack = new Stack<char>();
-            Stack<int> numberStack = new Stack<int>();
+            Stack<double> numberStack = new Stack<double>();
             int length = expression.Length;
             int index = 0;
 
@@ -30,6 +30,7 @@ namespace SimpleCalculator
             {
                 switch (expression[index])
                 {
+                    case '.':
                     case '0':
                     case '1':
                     case '2':
@@ -43,19 +44,18 @@ namespace SimpleCalculator
                         string s = string.Empty;
                         while (true)
                         {
-                            if (expression[index] == '0' && s == "0")
-                                throw new Exception("Expression is invalid:" + (index + 1));
                             s += expression[index];
-                            if (++index >= length || expression[index] < '0' || expression[index] > '9')
+                            if (++index >= length || expression[index] != '.' && !expression[index].IsNumber())
                             {
                                 --index;
                                 break;
                             }
                         }
-                        numberStack.Push(int.Parse(s));
+                        double d = 0d;
+                        if (!double.TryParse(s, out d))
+                            throw new Exception("Expression is invalid.");
+                        numberStack.Push(d);
                         s = string.Empty;
-                        break;
-                    case '.':
                         break;
                     case ' ':
                         break;
@@ -143,9 +143,9 @@ namespace SimpleCalculator
             return numberStack.Pop();
         }
 
-        private int Calculate(char op, int firstNumber, int secondNumber)
+        private double Calculate(char op, double firstNumber, double secondNumber)
         {
-            int result = 0;
+            double result = 0d;
             switch (op)
             {
                 case '+':
