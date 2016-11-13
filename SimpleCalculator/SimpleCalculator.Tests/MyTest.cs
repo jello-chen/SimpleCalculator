@@ -1,22 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using SimpleCalculatorLib;
 
 namespace SimpleCalculator.Tests
 {
     [TestFixture]
-    public class MyTest
+    public class ExpressionEvaluatorTest
     {
         [Test]
-        public void Test()
+        public void TestIntegralOperation()
         {
-            int a = 1;
-            int b = 2;
-            int sum = a + b;
-            Assert.AreEqual(sum, 3);
+            var expressionEvaluator = new ExpressionEvaluator(" 1 + 2 * 2 - 1 + 4 / 2");
+            Assert.AreEqual(6, expressionEvaluator.GetResult());
+        }
+
+        [Test]
+        public void TestIntegralOperationWithBrackets()
+        {
+            var expressionEvaluator = new ExpressionEvaluator(" 1 + 2 * (2 - 1 + 4) / 2");
+            Assert.AreEqual(6, expressionEvaluator.GetResult());
+        }
+
+        [Test]
+        public void TestFloatingPointOperation()
+        {
+            var expressionEvaluator = new ExpressionEvaluator(" 1 + 2.5 * 2 - 1 + 4 / 2.0");
+            Assert.AreEqual(7, expressionEvaluator.GetResult());
+        }
+
+        [Test]
+        public void TestFloatingPointOperationWithBrackets()
+        {
+            var expressionEvaluator = new ExpressionEvaluator(" 1 + 2.5 * (2 - 1 + 4) / 2.0");
+            Assert.AreEqual(7.25, expressionEvaluator.GetResult());
         }
     }
 }

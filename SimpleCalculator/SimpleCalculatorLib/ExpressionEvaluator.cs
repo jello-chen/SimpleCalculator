@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SimpleCalculator
+namespace SimpleCalculatorLib
 {
     /// <summary>
     /// Expression Evaluator
@@ -61,7 +59,7 @@ namespace SimpleCalculator
                         break;
                     case '+':
                     case '-':
-                        if (operatorStack.Count <= 0 || operatorStack.Contains('('))
+                        if (operatorStack.Count <= 0)
                         {
                             operatorStack.Push(expression[index]);
                         }
@@ -69,7 +67,9 @@ namespace SimpleCalculator
                         {
                             while (operatorStack.Count > 0)
                             {
-                                var op = operatorStack.Pop();
+                                char op = operatorStack.Peek();
+                                if (op == '(') break;
+                                op = operatorStack.Pop();
                                 var secondNumber = numberStack.Pop();
                                 var firstNumber = numberStack.Pop();
                                 numberStack.Push(Calculate(op, firstNumber, secondNumber));
@@ -80,7 +80,7 @@ namespace SimpleCalculator
                     case '*':
                     case '/':
 
-                        if (operatorStack.Count <= 0 || operatorStack.Contains('('))
+                        if (operatorStack.Count <= 0)
                         {
                             operatorStack.Push(expression[index]);
                         }
@@ -92,7 +92,7 @@ namespace SimpleCalculator
                             while (operatorStack.Count > 0)
                             {
                                 char op = operatorStack.Peek();
-                                if (op == '+' || op == '-')
+                                if (op == '+' || op == '-' || op == '(')
                                 {
                                     operatorStack.Push(expression[index]);
                                     break;

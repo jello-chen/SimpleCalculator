@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCalculator", "SimpleC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCalculator.Tests", "SimpleCalculator.Tests\SimpleCalculator.Tests.csproj", "{4B7138A4-47C1-48E5-973F-DA0010C71936}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCalculatorLib", "SimpleCalculatorLib\SimpleCalculatorLib.csproj", "{FD402081-243B-4FC3-AB01-CC683027CA25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4B7138A4-47C1-48E5-973F-DA0010C71936}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B7138A4-47C1-48E5-973F-DA0010C71936}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B7138A4-47C1-48E5-973F-DA0010C71936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD402081-243B-4FC3-AB01-CC683027CA25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD402081-243B-4FC3-AB01-CC683027CA25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD402081-243B-4FC3-AB01-CC683027CA25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD402081-243B-4FC3-AB01-CC683027CA25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
